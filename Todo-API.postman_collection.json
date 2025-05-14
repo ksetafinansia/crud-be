@@ -1,0 +1,316 @@
+{
+	"info": {
+		"_postman_id": "f8a7b4e6-5f1d-4c0b-8d3e-7c491a9d8e05",
+		"name": "Todo CRUD API",
+		"description": "A collection for testing the Todo CRUD API deployed on Railway",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12345678"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://crud-be-production.up.railway.app/api/v1/health",
+					"protocol": "https",
+					"host": [
+						"crud-be-production",
+						"up",
+						"railway",
+						"app"
+					],
+					"path": [
+						"api",
+						"v1",
+						"health"
+					]
+				},
+				"description": "Checks if the API service is running properly"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Todos",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "dwiki2025!",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://crud-be-production.up.railway.app/api/v1/todos",
+					"protocol": "https",
+					"host": [
+						"crud-be-production",
+						"up",
+						"railway",
+						"app"
+					],
+					"path": [
+						"api",
+						"v1",
+						"todos"
+					]
+				},
+				"description": "Retrieves all todos from the database"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Todo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "dwiki2025!",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Test Todo\",\n    \"description\": \"This is a test todo created from Postman\",\n    \"completed\": false\n}"
+				},
+				"url": {
+					"raw": "https://crud-be-production.up.railway.app/api/v1/todos",
+					"protocol": "https",
+					"host": [
+						"crud-be-production",
+						"up",
+						"railway",
+						"app"
+					],
+					"path": [
+						"api",
+						"v1",
+						"todos"
+					]
+				},
+				"description": "Creates a new todo item"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Todo by ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "dwiki2025!",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://crud-be-production.up.railway.app/api/v1/todos/:id",
+					"protocol": "https",
+					"host": [
+						"crud-be-production",
+						"up",
+						"railway",
+						"app"
+					],
+					"path": [
+						"api",
+						"v1",
+						"todos",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "todo-id-here",
+							"description": "Replace with an actual todo ID"
+						}
+					]
+				},
+				"description": "Retrieves a specific todo by ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Todo (PUT)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "dwiki2025!",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Updated Todo Title\",\n    \"description\": \"This todo was updated using PUT request\",\n    \"completed\": true\n}"
+				},
+				"url": {
+					"raw": "https://crud-be-production.up.railway.app/api/v1/todos/:id",
+					"protocol": "https",
+					"host": [
+						"crud-be-production",
+						"up",
+						"railway",
+						"app"
+					],
+					"path": [
+						"api",
+						"v1",
+						"todos",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "todo-id-here",
+							"description": "Replace with an actual todo ID"
+						}
+					]
+				},
+				"description": "Completely updates a todo by ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Todo Partially (PATCH)",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "dwiki2025!",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"completed\": true\n}"
+				},
+				"url": {
+					"raw": "https://crud-be-production.up.railway.app/api/v1/todos/:id",
+					"protocol": "https",
+					"host": [
+						"crud-be-production",
+						"up",
+						"railway",
+						"app"
+					],
+					"path": [
+						"api",
+						"v1",
+						"todos",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "todo-id-here",
+							"description": "Replace with an actual todo ID"
+						}
+					]
+				},
+				"description": "Partially updates a todo by ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Todo",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "dwiki2025!",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://crud-be-production.up.railway.app/api/v1/todos/:id",
+					"protocol": "https",
+					"host": [
+						"crud-be-production",
+						"up",
+						"railway",
+						"app"
+					],
+					"path": [
+						"api",
+						"v1",
+						"todos",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "todo-id-here",
+							"description": "Replace with an actual todo ID"
+						}
+					]
+				},
+				"description": "Deletes a todo by ID"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "key",
+				"value": "x-api-key",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "dwiki2025!",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://crud-be-production.up.railway.app",
+			"type": "string"
+		}
+	]
+}

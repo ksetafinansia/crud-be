@@ -1,0 +1,50 @@
+@baseUrl = crud-be-production.up.railway.app
+@apiKey = dwiki2025!
+
+### Health Check
+GET {{baseUrl}}/api/v1/health
+x-api-key: {{apiKey}}
+Content-Type: application/json
+
+### Get All Todos
+GET {{baseUrl}}/api/v1/todos
+x-api-key: {{apiKey}}
+
+### Create Todo
+POST {{baseUrl}}/api/v1/todos
+x-api-key: {{apiKey}}
+Content-Type: application/json
+
+{
+  "title": "Test Todo",
+  "description": "This is a test todo",
+  "completed": false
+}
+
+### Get Todo by ID (replace with actual ID after creating)
+GET {{baseUrl}}/api/v1/todos/todo-id-here
+x-api-key: {{apiKey}}
+
+### Update Todo Completely (replace with actual ID)
+PUT {{baseUrl}}/api/v1/todos/todo-id-here
+x-api-key: {{apiKey}}
+Content-Type: application/json
+
+{
+  "title": "Updated Todo Title",
+  "description": "This is an updated description",
+  "completed": true
+}
+
+### Update Todo Partially (replace with actual ID)
+PATCH {{baseUrl}}/api/v1/todos/todo-id-here
+x-api-key: {{apiKey}}
+Content-Type: application/json
+
+{
+  "completed": true
+}
+
+### Delete Todo (replace with actual ID)
+DELETE {{baseUrl}}/api/v1/todos/todo-id-here
+x-api-key: {{apiKey}}
