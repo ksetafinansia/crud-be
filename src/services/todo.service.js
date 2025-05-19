@@ -1,16 +1,50 @@
 const Todo = require('../models/todo.model');
-const { NotFoundError } = require('../utils/errors');
+const { NotFoundError, BadRequestError } = require('../utils/errors');
 
 /**
  * Service layer for Todo business logic
  */
 class TodoService {
   /**
-   * Get all todos
-   * @returns {Promise<Array>} - List of all todos
+   * Get all todos with pagination
+   * @param {Object} options - Pagination options
+   * @param {Number} options.page - Page number (default: 1)
+   * @param {Number} options.limit - Number of items per page (default: 10)
+   * @returns {Promise<Object>} - Paginated todos and metadata
    */
-  static async getAllTodos() {
-    return Todo.find().sort({ createdAt: -1 });
+  static async getAllTodos(options = {}) {
+    const page = parseInt(options.page, 10) || 1;
+    const limit = parseInt(options.limit, 10) || 10;
+    
+    if (page < 1) {
+      throw new BadRequestError('Page must be greater than 0');
+    }
+
+    if (limit < 1 || limit > 100) {
+      throw new BadRequestError('Limit must be between 1 and 100');
+    }
+    
+    const skip = (page - 1) * limit;
+    
+    const [todos, total] = await Promise.all([
+      Todo.find()
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(limit),
+      Todo.countDocuments()
+    ]);
+    
+    return {
+      todos,
+      pagination: {
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit),
+        hasNextPage: page < Math.ceil(total / limit),
+        hasPrevPage: page > 1
+      }
+    };
   }
 
   /**

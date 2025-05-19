@@ -10,6 +10,18 @@ Content-Type: application/json
 GET {{baseUrl}}/api/v1/todos
 x-api-key: {{apiKey}}
 
+### Get Todos with Pagination (page 1, limit 10)
+GET {{baseUrl}}/api/v1/todos?page=1&limit=10
+x-api-key: {{apiKey}}
+
+### Get Todos with Pagination (page 2, limit 5)
+GET {{baseUrl}}/api/v1/todos?page=2&limit=5
+x-api-key: {{apiKey}}
+
+### Get Todos with Pagination (custom page and limit)
+GET {{baseUrl}}/api/v1/todos?page=0&limit=0
+x-api-key: {{apiKey}}
+
 ### Create Todo
 POST {{baseUrl}}/api/v1/todos
 x-api-key: {{apiKey}}

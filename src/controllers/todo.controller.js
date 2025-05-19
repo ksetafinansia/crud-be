@@ -6,16 +6,21 @@ const ApiResponse = require('../utils/apiResponse');
  */
 class TodoController {
   /**
-   * Get all todos
+   * Get all todos with pagination
    * @param {Object} req - Express request object
    * @param {Object} res - Express response object
    * @param {Function} next - Express next middleware function
    */
   static async getAllTodos(req, res, next) {
     try {
-      const todos = await TodoService.getAllTodos();
+      const { page, limit } = req.query;
+      const result = await TodoService.getAllTodos({ page, limit });
+      
       return res.status(200).json(
-        ApiResponse.success(todos, 'Todos retrieved successfully')
+        ApiResponse.success({
+          todos: result.todos,
+          pagination: result.pagination
+        }, 'Todos retrieved successfully')
       );
     } catch (error) {
       next(error);
